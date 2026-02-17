@@ -1171,70 +1171,90 @@
         });
 
         // Manifesto reveal
-        gsap.from('.manifesto-left', {
-            opacity: 0,
-            x: -60,
-            duration: 1,
-            ease: 'power3.out',
-            scrollTrigger: {
-                trigger: '.manifesto',
-                start: 'top 70%'
+        gsap.fromTo('.manifesto-left', 
+            { opacity: 0, x: -60 },
+            {
+                opacity: 1,
+                x: 0,
+                duration: 1,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: '.manifesto',
+                    start: 'top 80%',
+                    toggleActions: 'play none none none'
+                }
             }
-        });
+        );
 
-        gsap.from('.manifesto-right', {
-            opacity: 0,
-            x: 60,
-            duration: 1,
-            ease: 'power3.out',
-            scrollTrigger: {
-                trigger: '.manifesto',
-                start: 'top 70%'
+        gsap.fromTo('.manifesto-right', 
+            { opacity: 0, x: 60 },
+            {
+                opacity: 1,
+                x: 0,
+                duration: 1,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: '.manifesto',
+                    start: 'top 80%',
+                    toggleActions: 'play none none none'
+                }
             }
-        });
+        );
 
         // Bike sections - scale and reveal
         document.querySelectorAll('.bike-section').forEach(section => {
             const visual = section.querySelector('.bike-visual');
             const info = section.querySelector('.bike-info');
             
-            gsap.from(visual, {
-                scale: 0.8,
-                opacity: 0,
-                rotation: section.classList.contains('trail') ? -5 : 5,
-                duration: 1.2,
-                ease: 'power3.out',
-                scrollTrigger: {
-                    trigger: section,
-                    start: 'top 60%'
+            gsap.fromTo(visual, 
+                { scale: 0.8, opacity: 0, rotation: section.classList.contains('trail') ? -5 : 5 },
+                {
+                    scale: 1,
+                    opacity: 1,
+                    rotation: 0,
+                    duration: 1.2,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: section,
+                        start: 'top 75%',
+                        toggleActions: 'play none none none'
+                    }
                 }
-            });
+            );
 
-            gsap.from(info, {
-                clipPath: 'inset(0 100% 0 0)',
-                opacity: 0,
-                duration: 1,
-                ease: 'power3.out',
-                scrollTrigger: {
-                    trigger: section,
-                    start: 'top 60%'
+            gsap.fromTo(info, 
+                { clipPath: 'inset(0 100% 0 0)', opacity: 0 },
+                {
+                    clipPath: 'inset(0 0% 0 0)',
+                    opacity: 1,
+                    duration: 1,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: section,
+                        start: 'top 75%',
+                        toggleActions: 'play none none none'
+                    }
                 }
-            });
+            );
         });
 
         // Spec cards stagger
         document.querySelectorAll('.specs-track').forEach(track => {
-            gsap.from(track.querySelectorAll('.spec-card'), {
-                y: 40,
-                opacity: 0,
-                duration: 0.8,
-                stagger: 0.1,
-                ease: 'power3.out',
-                scrollTrigger: {
-                    trigger: track,
-                    start: 'top 85%'
+            gsap.fromTo(track.querySelectorAll('.spec-card'), 
+                { y: 40, opacity: 0 },
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.8,
+                    stagger: 0.1,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: track,
+                        start: 'top 90%',
+                        toggleActions: 'play none none none'
+                    }
                 }
-            });
+            );
         });
 
         // Counter animation
@@ -1253,41 +1273,53 @@
             });
         });
 
-        // Comparison cards
-        gsap.from('.compare-card', {
-            y: 80,
-            opacity: 0,
-            duration: 1,
-            stagger: 0.2,
-            ease: 'power3.out',
-            scrollTrigger: {
-                trigger: '.comparison-grid',
-                start: 'top 70%'
+        // Comparison cards - use fromTo for reliable visibility
+        gsap.fromTo('.compare-card', 
+            { y: 80, opacity: 0 },
+            {
+                y: 0,
+                opacity: 1,
+                duration: 1,
+                stagger: 0.2,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: '.comparison-grid',
+                    start: 'top 85%',
+                    toggleActions: 'play none none none'
+                }
             }
-        });
+        );
 
         // CTA reveal
-        gsap.from('.cta-title', {
-            clipPath: 'inset(0 0 100% 0)',
-            duration: 1,
-            ease: 'power4.out',
-            scrollTrigger: {
-                trigger: '.cta',
-                start: 'top 70%'
+        gsap.fromTo('.cta-title', 
+            { clipPath: 'inset(0 0 100% 0)' },
+            {
+                clipPath: 'inset(0 0 0% 0)',
+                duration: 1,
+                ease: 'power4.out',
+                scrollTrigger: {
+                    trigger: '.cta',
+                    start: 'top 85%',
+                    toggleActions: 'play none none none'
+                }
             }
-        });
+        );
 
-        gsap.from('.cta-form', {
-            y: 40,
-            opacity: 0,
-            duration: 1,
-            delay: 0.3,
-            ease: 'power3.out',
-            scrollTrigger: {
-                trigger: '.cta',
-                start: 'top 70%'
+        gsap.fromTo('.cta-form', 
+            { y: 40, opacity: 0 },
+            {
+                y: 0,
+                opacity: 1,
+                duration: 1,
+                delay: 0.3,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: '.cta',
+                    start: 'top 85%',
+                    toggleActions: 'play none none none'
+                }
             }
-        });
+        );
 
         // Parallax on geometric accents
         gsap.to('.geo-accent-1', {
