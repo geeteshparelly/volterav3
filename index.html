@@ -159,37 +159,26 @@
             margin-bottom: 3rem;
         }
 
-        /* Bike silhouette placeholder */
+        /* Hero background image */
         .hero-visual {
             position: absolute;
-            bottom: 15%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 70vw;
-            max-width: 900px;
-            height: 300px;
-            opacity: 0.15;
+            inset: 0;
+            z-index: 0;
         }
 
-        .bike-silhouette {
+        .hero-image {
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, var(--color-city), var(--color-trail));
-            clip-path: polygon(
-                15% 70%, 20% 50%, 30% 45%, 35% 30%, 50% 25%, 65% 30%, 
-                70% 45%, 80% 50%, 85% 70%, 75% 75%, 70% 60%, 60% 55%, 
-                50% 55%, 40% 55%, 30% 60%, 25% 75%
-            );
-            filter: blur(2px);
+            object-fit: cover;
+            opacity: 0.4;
+            filter: grayscale(30%);
         }
 
-        .hero-visual::before {
+        .hero-visual::after {
             content: "";
             position: absolute;
-            inset: -50%;
-            background: radial-gradient(circle, rgba(0, 212, 255, 0.3), transparent 60%);
-            filter: blur(80px);
-            z-index: -1;
+            inset: 0;
+            background: linear-gradient(to top, var(--color-bg) 0%, transparent 50%, var(--color-bg) 100%);
         }
 
         .scroll-prompt {
@@ -471,40 +460,34 @@
             justify-content: center;
         }
 
-        .bike-placeholder {
+        .bike-image {
             width: 100%;
             aspect-ratio: 4/3;
-            background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-border) 50%, var(--color-surface) 100%);
-            background-size: 300% 100%;
-            animation: shimmer 4s ease-in-out infinite;
+            object-fit: cover;
             border-radius: 8px;
             position: relative;
-            overflow: hidden;
+            transition: transform 0.5s ease;
         }
 
-        .bike-placeholder::before {
+        .bike-visual:hover .bike-image {
+            transform: scale(1.03);
+        }
+
+        .bike-image-wrapper {
+            width: 100%;
+            aspect-ratio: 4/3;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .bike-image-wrapper::after {
             content: "";
             position: absolute;
             inset: 0;
-            background: 
-                linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.03) 50%, transparent 60%);
-        }
-
-        .bike-placeholder::after {
-            content: "VOLTERA";
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-family: var(--font-display);
-            font-size: 3rem;
-            letter-spacing: 0.3em;
-            opacity: 0.1;
-        }
-
-        @keyframes shimmer {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
+            border-radius: 8px;
+            box-shadow: inset 0 0 60px rgba(0,0,0,0.4);
+            pointer-events: none;
         }
 
         .bike-visual .glow {
@@ -604,33 +587,29 @@
             height: 200px;
             background: var(--color-surface);
             margin-bottom: 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             transition: transform 0.4s ease;
             position: relative;
             overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .compare-visual img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .compare-card:hover .compare-visual img {
+            transform: scale(1.1);
         }
 
         .compare-visual::after {
             content: "";
             position: absolute;
-            width: 150%;
-            height: 150%;
-            background: conic-gradient(from 0deg, transparent, rgba(255,255,255,0.05), transparent);
-            animation: rotate 10s linear infinite;
-        }
-
-        @keyframes rotate {
-            to { transform: rotate(360deg); }
-        }
-
-        .compare-visual span {
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            letter-spacing: 0.2em;
-            opacity: 0.3;
-            z-index: 1;
+            inset: 0;
+            background: linear-gradient(to top, rgba(10,10,10,0.6) 0%, transparent 50%);
+            pointer-events: none;
         }
 
         .compare-model {
@@ -944,7 +923,7 @@
             <p class="hero-sub">Premium electric bikes for those who refuse to blend in</p>
         </div>
         <div class="hero-visual">
-            <div class="bike-silhouette"></div>
+            <img src="https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=1920&q=80" alt="Electric bike" class="hero-image">
         </div>
         <div class="scroll-prompt">
             <span>Explore</span>
@@ -1006,7 +985,9 @@
             </div>
             <div class="bike-visual">
                 <div class="glow"></div>
-                <div class="bike-placeholder"></div>
+                <div class="bike-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" alt="Voltera City e-bike" class="bike-image">
+                </div>
             </div>
         </div>
     </section>
@@ -1044,7 +1025,9 @@
             </div>
             <div class="bike-visual">
                 <div class="glow"></div>
-                <div class="bike-placeholder"></div>
+                <div class="bike-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1544191696-102dbdaeeaa0?w=800&q=80" alt="Voltera Trail e-bike" class="bike-image">
+                </div>
             </div>
         </div>
     </section>
@@ -1058,7 +1041,7 @@
         <div class="comparison-grid">
             <div class="compare-card city">
                 <div class="compare-visual">
-                    <span>CITY</span>
+                    <img src="https://images.unsplash.com/photo-1593764592116-bfb2a97c642a?w=600&q=80" alt="City e-bike">
                 </div>
                 <h3 class="compare-model">VOLTERA CITY</h3>
                 <p class="compare-tagline">For the concrete jungle</p>
@@ -1085,7 +1068,7 @@
             </div>
             <div class="compare-card trail">
                 <div class="compare-visual">
-                    <span>TRAIL</span>
+                    <img src="https://images.unsplash.com/photo-1576435728678-68d0fbf94e91?w=600&q=80" alt="Trail e-bike">
                 </div>
                 <h3 class="compare-model">VOLTERA TRAIL</h3>
                 <p class="compare-tagline">For the unbeaten path</p>
