@@ -164,21 +164,34 @@
             position: absolute;
             inset: 0;
             z-index: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .hero-image {
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            opacity: 0.4;
-            filter: grayscale(30%);
+            object-fit: contain;
+            object-position: center 60%;
+            opacity: 0.7;
+            max-width: 1400px;
+        }
+
+        .hero-visual::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, transparent 30%, var(--color-bg) 80%);
+            z-index: 1;
         }
 
         .hero-visual::after {
             content: "";
             position: absolute;
             inset: 0;
-            background: linear-gradient(to top, var(--color-bg) 0%, transparent 50%, var(--color-bg) 100%);
+            background: linear-gradient(to top, var(--color-bg) 5%, transparent 40%, transparent 60%, var(--color-bg) 100%);
+            z-index: 1;
         }
 
         .scroll-prompt {
@@ -923,7 +936,7 @@
             <p class="hero-sub">Premium electric bikes for those who refuse to blend in</p>
         </div>
         <div class="hero-visual">
-            <img src="https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=1920&q=80" alt="Electric bike" class="hero-image">
+            <img src="hero-bike.png" alt="Voltera Electric Bike" class="hero-image">
         </div>
         <div class="scroll-prompt">
             <span>Explore</span>
